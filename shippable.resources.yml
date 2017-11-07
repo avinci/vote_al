@@ -22,6 +22,7 @@ resources:
       sourceName: "fe_lb"
       method: LoadBalancer
       clusterName: "cluster"
+      region: "us-west1-a"
     version:
       ports:
         - name: testport
@@ -39,6 +40,7 @@ resources:
       sourceName: "be_lb"
       method: clusterIP
       clusterName: "cluster"
+      region: "us-west1-a"
     version:
       ports:
         - name: testport
@@ -57,6 +59,7 @@ resources:
       sourceName: "fe_lb"
       method: LoadBalancer
       clusterName: "cluster"
+      region: "us-west1-a"
     version:
       ports:
         - name: testport
@@ -74,6 +77,7 @@ resources:
       sourceName: "be_lb"
       method: clusterIP
       clusterName: "cluster"
+      region: "us-west1-a"
     version:
       ports:
         - name: testport
@@ -127,7 +131,7 @@ resources:
     integration: demo_gke
     pointer:
       sourceName: "cluster"
-      region: us-west1-a
+      region: "us-west1-a"
 
   - name: prod_sem_ver
     type: version
