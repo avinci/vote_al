@@ -29,12 +29,17 @@ jobs:
       - IN: vote_fe_temp
       - IN: gke_cluster
 
-  - name: prov_lb
+  - name: prov_test_lb
     type: provision
     steps:
       - IN: be_lb
       - IN: fe_lb
 
+  - name: prov_prod_lb
+    type: provision
+    steps:
+      - IN: be_lb
+      - IN: fe_lb
 #
 #  - name: build_image
 #    type: runSh

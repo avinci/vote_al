@@ -15,7 +15,7 @@ resources:
     seed:
       versionName: "master.1"
 
-  - name: fe_lb
+  - name: test_fe_lb
     type: loadBalancer
     integration: demo_gke
     pointer:
@@ -28,10 +28,11 @@ resources:
           protocol: TCP
           port: 80
       selector:
-        shippable.manifestName: "vote_fe_temp"
-        shippable.jobName: "vote_app_deploy"
+        app: "test_fe"
+#        shippable.manifestName: "vote_fe_temp"
+#        shippable.jobName: "vote_app_deploy"
 
-  - name: be_lb
+  - name: test_be_lb
     type: loadBalancer
     integration: demo_gke
     pointer:
@@ -42,10 +43,49 @@ resources:
       ports:
         - name: testport
           protocol: TCP
-          port: 80
+          port: 6379
       selector:
-        shippable.manifestName: "vote_be_temp"
-        shippable.jobName: "vote_app_deploy"
+        app: "test_be"
+#        shippable.manifestName: "vote_be_temp"
+#        shippable.jobName: "vote_app_deploy"
+
+  - name: test_be_options
+    type: dockerOptions
+    version:
+      memory: 128
+      portMappings:
+        - "6379:6379/tcp"
+      labels:
+        app: "test_be"
+
+  - name: test_fe_options
+    type: dockerOptions
+    version:
+      memory: 128
+      portMappings:
+        - "80:80/tcp"
+      labels:
+        app: "test_fe"
+
+  - name: prod_be_options
+    type: dockerOptions
+    version:
+      memory: 256
+      cpu: 256
+      portMappings:
+        - "6379:6379/tcp"
+      labels:
+        app: "prod_be"
+
+  - name: prod_fe_options
+    type: dockerOptions
+    version:
+      memory: 256
+      cpu: 512
+      portMappings:
+        - "80:80/tcp"
+      labels:
+        app: "prod_fe"
 
 
 #  - name: test_params
