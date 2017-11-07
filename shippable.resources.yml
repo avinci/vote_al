@@ -75,7 +75,7 @@ resources:
     integration: demo_gke
     pointer:
       sourceName: "test-be-lb"
-      method: clusterIP
+      method: ClusterIP
       clusterName: "cluster"
       region: "us-west1-a"
     version:
