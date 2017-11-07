@@ -19,7 +19,7 @@ resources:
     type: loadBalancer
     integration: demo_gke
     pointer:
-      sourceName: "fe_lb"
+      sourceName: "prod-fe-lb"
       method: LoadBalancer
       clusterName: "cluster"
       region: "us-west1-a"
@@ -37,7 +37,7 @@ resources:
     type: loadBalancer
     integration: demo_gke
     pointer:
-      sourceName: "be_lb"
+      sourceName: "prod-be-lb"
       method: ClusterIP
       clusterName: "cluster"
       region: "us-west1-a"
@@ -56,7 +56,7 @@ resources:
     type: loadBalancer
     integration: demo_gke
     pointer:
-      sourceName: "fe_lb"
+      sourceName: "test-fe-lb"
       method: LoadBalancer
       clusterName: "cluster"
       region: "us-west1-a"
@@ -74,7 +74,7 @@ resources:
     type: loadBalancer
     integration: demo_gke
     pointer:
-      sourceName: "be_lb"
+      sourceName: "test-be-lb"
       method: clusterIP
       clusterName: "cluster"
       region: "us-west1-a"
