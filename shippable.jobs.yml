@@ -4,6 +4,11 @@ jobs:
     steps:
       - OUT: vote_be
 
+  - name: vote_fe_runCI
+    type: runCI
+    steps:
+      - OUT: vote_fe
+
 
 #
 #  - name: build_image
