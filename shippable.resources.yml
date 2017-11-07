@@ -128,3 +128,9 @@ resources:
     pointer:
       sourceName: "cluster"
       region: us-west1-a
+
+  - name: prod_sem_ver
+    type: version
+    seed:
+      versionName: "0.0.1"
+

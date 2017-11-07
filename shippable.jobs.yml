@@ -40,9 +40,31 @@ jobs:
     steps:
       - IN: test_be_lb
       - IN: test_fe_lb
+      - IN: deploy-test-vote-app
+        switch: off
 
   - name: prov_prod_lb
     type: provision
     steps:
       - IN: prod_be_lb
       - IN: prod_fe_lb
+
+  - name: rel_prod
+    type: release
+    bump: minor
+    steps:
+      - IN: deploy-test-vote-app
+        switch: off
+
+  - name: deploy-prod-vote-app
+    type: deploy
+    method: replace
+    steps:
+      - IN: rel_prod
+      - IN: gke_cluster
+      - IN: prod_fe_options
+        applyTo:
+          - vote-fe-temp
+      - IN: prod_be_options
+        applyTo:
+          - vote-be-temp
