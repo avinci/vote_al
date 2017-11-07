@@ -53,6 +53,7 @@ jobs:
     type: release
     bump: minor
     steps:
+      - IN: prod_sem_ver
       - IN: deploy-test-vote-app
         switch: off
 
