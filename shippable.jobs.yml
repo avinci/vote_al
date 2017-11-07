@@ -32,14 +32,14 @@ jobs:
   - name: prov_test_lb
     type: provision
     steps:
-      - IN: be_lb
-      - IN: fe_lb
+      - IN: test_be_lb
+      - IN: test_fe_lb
 
   - name: prov_prod_lb
     type: provision
     steps:
-      - IN: be_lb
-      - IN: fe_lb
+      - IN: prod_be_lb
+      - IN: prod_fe_lb
 #
 #  - name: build_image
 #    type: runSh
