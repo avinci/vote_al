@@ -9,6 +9,17 @@ jobs:
     steps:
       - OUT: vote_fe
 
+  - name: vote_fe_temp
+    type: manifest
+    steps:
+      - IN: vote_fe
+      - TASK: managed
+
+  - name: vote_be_temp
+    type: manifest
+    steps:
+      - IN: vote_be
+      - TASK: managed
 
 #
 #  - name: build_image
