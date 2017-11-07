@@ -21,13 +21,19 @@ jobs:
       - IN: vote_be
       - TASK: managed
 
-  - name: vote_app_deploy
+  - name: deploy_test_vote_app
     type: deploy
     method: replace
     steps:
       - IN: vote_be_temp
       - IN: vote_fe_temp
       - IN: gke_cluster
+      - IN: test_fe_options
+        applyTo:
+          - vote_fe_temp
+      - IN: test_be_options
+        applyTo:
+          - vote_be_temp
 
   - name: prov_test_lb
     type: provision
@@ -40,6 +46,7 @@ jobs:
     steps:
       - IN: prod_be_lb
       - IN: prod_fe_lb
+
 #
 #  - name: build_image
 #    type: runSh
