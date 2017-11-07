@@ -43,12 +43,6 @@ jobs:
       - IN: deploy-test-vote-app
         switch: off
 
-  - name: prov_prod_lb
-    type: provision
-    steps:
-      - IN: prod_be_lb
-      - IN: prod_fe_lb
-
   - name: rel_prod
     type: release
     bump: minor
@@ -69,3 +63,11 @@ jobs:
       - IN: prod_be_options
         applyTo:
           - vote-be-temp
+
+  - name: prov_prod_lb
+    type: provision
+    steps:
+      - IN: prod_be_lb
+      - IN: prod_fe_lb
+      - IN: deploy-prod-vote-app
+        switch: off
