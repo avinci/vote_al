@@ -15,6 +15,41 @@ resources:
     seed:
       versionName: "master.1"
 
+  - name: prod_fe_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "fe_lb"
+      method: LoadBalancer
+      clusterName: "cluster"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 80
+      selector:
+        app: "test_fe"
+#        shippable.manifestName: "vote_fe_temp"
+#        shippable.jobName: "vote_app_deploy"
+
+  - name: prod_be_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "be_lb"
+      method: clusterIP
+      clusterName: "cluster"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 6379
+      selector:
+        app: "test_be"
+#        shippable.manifestName: "vote_be_temp"
+#        shippable.jobName: "vote_app_deploy"
+
+
   - name: test_fe_lb
     type: loadBalancer
     integration: demo_gke
