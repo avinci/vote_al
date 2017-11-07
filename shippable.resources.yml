@@ -1,0 +1,63 @@
+resources:
+  - name: vote_fe
+    type: image
+    integration: demo_dh
+    pointer:
+      sourceName: "avinci/vote_fe"
+    seed:
+      versionName: "master.1"
+
+  - name: vote_be
+    type: image
+    integration: demo_dh
+    pointer:
+      sourceName: "avinci/vote_be"
+    seed:
+      versionName: "master.1"
+#
+#  - name: test_params
+#    type: params
+#    version:
+#      params:
+#        FE_LABEL: "vote-front-test"
+#        BE_LABEL: "vote-back-test"
+#
+#  - name: prod_params
+#    type: params
+#    version:
+#      params:
+#        FE_LABEL: "vote-front-prod"
+#        BE_LABEL: "vote-back-prod"
+#
+#  - name: relstate
+#    type: state
+#
+#  - name: prodstate
+#    type: state
+#
+#  - name: teststate
+#    type: state
+#
+#  - name: gke_cluster
+#    type: cluster
+#    integration: demo_gke
+#    pointer:
+#      sourceName: "cluster"
+#      region: us-west1-a
+#
+#  - name: gcloud_cliConfig
+#    type: cliConfig
+#    integration: drship_gcloud
+#    pointer:
+#      # replace us-central1-a with your availability zone
+#      region: us-central1-a
+#
+#  - name: ship_voting_app_redis_gitRepo
+#    type: gitRepo
+#    # replace dr_github with your GitHub integration name
+#    integration: demo_gh
+#    pointer:
+#      # replace with source code location (e.g. GitHub) where you cloned this
+#      # sample project.
+#      sourceName: devops-recipes/ship-voting-app-redis
+#      branch: master
