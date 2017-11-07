@@ -14,7 +14,40 @@ resources:
       sourceName: "avinci/vote_be"
     seed:
       versionName: "master.1"
-#
+
+  - name: fe_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "fe_lb"
+      method: LoadBalancer
+      clusterName: "cluster"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 80
+      selector:
+        shippable.manifestName: "vote_fe_temp"
+        shippable.jobName: "vote_app_deploy"
+
+  - name: be_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "be_lb"
+      method: clusterIP
+      clusterName: "cluster"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 80
+      selector:
+        shippable.manifestName: "vote_be_temp"
+        shippable.jobName: "vote_app_deploy"
+
+
 #  - name: test_params
 #    type: params
 #    version:
@@ -38,12 +71,12 @@ resources:
 #  - name: teststate
 #    type: state
 #
-#  - name: gke_cluster
-#    type: cluster
-#    integration: demo_gke
-#    pointer:
-#      sourceName: "cluster"
-#      region: us-west1-a
+  - name: gke_cluster
+    type: cluster
+    integration: demo_gke
+    pointer:
+      sourceName: "cluster"
+      region: us-west1-a
 #
 #  - name: gcloud_cliConfig
 #    type: cliConfig
