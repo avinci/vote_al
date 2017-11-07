@@ -21,7 +21,7 @@ jobs:
       - IN: vote_be
       - TASK: managed
 
- - name: vote_app_deploy
+  - name: vote_app_deploy
     type: deploy
     method: replace
     steps:
