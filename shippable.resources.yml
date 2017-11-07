@@ -15,78 +15,12 @@ resources:
     seed:
       versionName: "master.1"
 
-  - name: prod_fe_lb
-    type: loadBalancer
+  - name: gke_cluster
+    type: cluster
     integration: demo_gke
     pointer:
-      sourceName: "prod-fe-lb"
-      method: LoadBalancer
-      clusterName: "cluster"
+      sourceName: "cluster"
       region: "us-west1-a"
-    version:
-      ports:
-        - name: testport
-          protocol: TCP
-          port: 80
-      selector:
-        app: "test_fe"
-#        shippable.manifestName: "vote-fe-temp"
-#        shippable.jobName: "vote_app_deploy"
-
-  - name: prod_be_lb
-    type: loadBalancer
-    integration: demo_gke
-    pointer:
-      sourceName: "prod-be-lb"
-      method: ClusterIP
-      clusterName: "cluster"
-      region: "us-west1-a"
-    version:
-      ports:
-        - name: testport
-          protocol: TCP
-          port: 6379
-      selector:
-        app: "test_be"
-#        shippable.manifestName: "vote-be-temp"
-#        shippable.jobName: "vote_app_deploy"
-
-
-  - name: test_fe_lb
-    type: loadBalancer
-    integration: demo_gke
-    pointer:
-      sourceName: "test-fe-lb"
-      method: LoadBalancer
-      clusterName: "cluster"
-      region: "us-west1-a"
-    version:
-      ports:
-        - name: testport
-          protocol: TCP
-          port: 80
-      selector:
-        app: "test_fe"
-#        shippable.manifestName: "vote-fe-temp"
-#        shippable.jobName: "vote_app_deploy"
-
-  - name: test_be_lb
-    type: loadBalancer
-    integration: demo_gke
-    pointer:
-      sourceName: "test-be-lb"
-      method: ClusterIP
-      clusterName: "cluster"
-      region: "us-west1-a"
-    version:
-      ports:
-        - name: testport
-          protocol: TCP
-          port: 6379
-      selector:
-        app: "test_be"
-#        shippable.manifestName: "vote-be-temp"
-#        shippable.jobName: "vote_app_deploy"
 
   - name: test_be_options
     type: dockerOptions
@@ -126,15 +60,73 @@ resources:
       labels:
         app: "prod_fe"
 
-  - name: gke_cluster
-    type: cluster
-    integration: demo_gke
-    pointer:
-      sourceName: "cluster"
-      region: "us-west1-a"
 
   - name: prod_sem_ver
     type: version
     seed:
       versionName: "0.0.1"
 
+
+  - name: prod_fe_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "prod-fe-lb"
+      method: LoadBalancer
+      clusterName: "cluster"
+      region: "us-west1-a"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 80
+      selector:
+        app: "test_fe"
+
+  - name: prod_be_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "prod-be-lb"
+      method: ClusterIP
+      clusterName: "cluster"
+      region: "us-west1-a"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 6379
+      selector:
+        app: "test_be"
+
+  - name: test_fe_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "test-fe-lb"
+      method: LoadBalancer
+      clusterName: "cluster"
+      region: "us-west1-a"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 80
+      selector:
+        app: "test_fe"
+
+  - name: test_be_lb
+    type: loadBalancer
+    integration: demo_gke
+    pointer:
+      sourceName: "test-be-lb"
+      method: ClusterIP
+      clusterName: "cluster"
+      region: "us-west1-a"
+    version:
+      ports:
+        - name: testport
+          protocol: TCP
+          port: 6379
+      selector:
+        app: "test_be"
