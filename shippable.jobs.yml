@@ -28,6 +28,9 @@ jobs:
       - IN: vote-be-temp
       - IN: vote-fe-temp
       - IN: gke_cluster
+      - IN: test_fe_params
+        applyTo:
+          - vote-fe-temp
       - IN: test_fe_options
         applyTo:
           - vote-fe-temp
@@ -57,6 +60,9 @@ jobs:
     steps:
       - IN: rel_prod
       - IN: gke_cluster
+      - IN: prod_fe_params
+        applyTo:
+          - vote-fe-temp
       - IN: prod_fe_options
         applyTo:
           - vote-fe-temp

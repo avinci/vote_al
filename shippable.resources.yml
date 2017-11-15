@@ -31,6 +31,12 @@ resources:
       labels:
         app: "test_be"
 
+  - name: test_fe_params
+    type: params
+    version:
+      params:
+        REDIS: "test-be-lb"
+
   - name: test_fe_options
     type: dockerOptions
     version:
@@ -60,12 +66,16 @@ resources:
       labels:
         app: "prod_fe"
 
+  - name: prod_fe_params
+    type: params
+    version:
+      params:
+        REDIS: "prod-be-lb"
 
   - name: prod_sem_ver
     type: version
     seed:
       versionName: "0.0.1"
-
 
   - name: prod_fe_lb
     type: loadBalancer
@@ -77,7 +87,7 @@ resources:
       region: "us-west1-a"
     version:
       ports:
-        - name: testport
+        - name: testpor
           protocol: TCP
           port: 80
       selector:
